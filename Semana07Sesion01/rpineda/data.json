@@ -1,0 +1,208 @@
+
+[[{
+    "dni":"09876543",
+    "nombre":"Juan",
+    "apellido":"Perez",
+    "direccion":"Lima"
+},
+{
+    "dni":"09876542",
+    "nombre":"Pedro",
+    "apellido":"Lopez",
+    "direccion":"Chiclayo"
+}
+,{
+    "dni":"09876544",
+    "nombre":"Miguel",
+    "apellido":"Russarin",
+    "direccion":"Tumbes"
+},
+{
+    "dni":"09876545",
+    "nombre":"Diego",
+    "apellido":"Martinez",
+    "direccion":"Quito"
+},
+{
+    "dni":"09876546",
+    "nombre":"Pablo",
+    "apellido":"Laje",
+    "direccion":"Guayaquil"
+}]
+,
+[{
+    "ruc":"09876543",
+    "nombre":"Juan",
+    "apellido":"Perez",
+    "direccion":"Lima"
+},
+{
+    "ruc":"09876542",
+    "nombre":"Pedro",
+    "apellido":"Lopez",
+    "direccion":"Chiclayo"
+}
+,{
+    "ruc":"09876544",
+    "nombre":"Miguel",
+    "apellido":"Russarin",
+    "direccion":"Tumbes"
+},
+{
+    "ruc":"09876545",
+    "nombre":"Diego",
+    "apellido":"Martinez",
+    "direccion":"Quito"
+},
+{
+    "ruc":"09876546",
+    "nombre":"Pablo",
+    "apellido":"Laje",
+    "direccion":"Guayaquil"
+}]
+,
+[{
+    "marca":"Tempra",
+    "principio":"acetaminofeno",
+    "presentacion":"Capsulas",
+    "cantidad":50
+},{
+    "marca":"Tempra",
+    "principio":"acetaminofeno",
+    "presentacion":"Capsulas",
+    "cantidad":50
+},{
+    "marca":"Tempra",
+    "principio":"acetaminofeno",
+    "presentacion":"Capsulas",
+    "cantidad":50
+},{
+    "marca":"Tempra",
+    "principio":"acetaminofeno",
+    "presentacion":"Capsulas",
+    "cantidad":50
+},{
+    "marca":"Tempra",
+    "principio":"acetaminofeno",
+    "presentacion":"Capsulas",
+    "cantidad":50
+},{
+    "marca":"Tempra",
+    "principio":"acetaminofeno",
+    "presentacion":"Capsulas",
+    "cantidad":50
+}]
+,
+[
+    {
+        "dni":"12345678",
+        "nombre":"Roberto",
+        "apellido":"Pineda",
+        "direccion":"Lima",
+        "areas":[
+            {
+                "nombre":"inyectologia",
+                "experiencia":100
+            },
+            {
+                "nombre":"masajes",
+                "experiencia":20
+            },{
+                "nombre":"dietas",
+                "experiencia":80
+            },{
+                "nombre":"drenajes",
+                "experiencia":90
+            }
+        ]
+    },
+    {
+        "dni":"12345678",
+        "nombre":"Roberto",
+        "apellido":"Pineda",
+        "direccion":"Lima",
+        "areas":[
+            {
+                "nombre":"inyectologia",
+                "experiencia":100
+            },
+            {
+                "nombre":"masajes",
+                "experiencia":20
+            },{
+                "nombre":"dietas",
+                "experiencia":80
+            },{
+                "nombre":"drenajes",
+                "experiencia":90
+            }
+        ]
+    },
+    {
+        "dni":"12345678",
+        "nombre":"Roberto",
+        "apellido":"Pineda",
+        "direccion":"Lima",
+        "areas":[
+            {
+                "nombre":"inyectologia",
+                "experiencia":100
+            },
+            {
+                "nombre":"masajes",
+                "experiencia":20
+            },{
+                "nombre":"dietas",
+                "experiencia":80
+            },{
+                "nombre":"drenajes",
+                "experiencia":90
+            }
+        ]
+    },
+    {
+        "dni":"12345678",
+        "nombre":"Roberto",
+        "apellido":"Pineda",
+        "direccion":"Lima",
+        "areas":[
+            {
+                "nombre":"inyectologia",
+                "experiencia":100
+            },
+            {
+                "nombre":"masajes",
+                "experiencia":20
+            },{
+                "nombre":"dietas",
+                "experiencia":80
+            },{
+                "nombre":"drenajes",
+                "experiencia":90
+            }
+        ]
+    },
+    {
+        "dni":"12345678",
+        "nombre":"Roberto",
+        "apellido":"Pineda",
+        "direccion":"Lima",
+        "areas":[
+            {
+                "nombre":"inyectologia",
+                "experiencia":100
+            },
+            {
+                "nombre":"masajes",
+                "experiencia":20
+            },{
+                "nombre":"dietas",
+                "experiencia":80
+            },{
+                "nombre":"drenajes",
+                "experiencia":90
+            }
+        ]
+    }
+    
+]]

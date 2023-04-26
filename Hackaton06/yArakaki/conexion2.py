@@ -3,7 +3,7 @@ import os
 import time
 from colorama import init, Fore, Back, Style
 
-loop = True
+
 def SolicitudBaseDatos(solicitud):
     try:
         conexion = psycopg2.connect(
@@ -62,18 +62,37 @@ def ImprimirBaseDeDatos(tabla):
             conexion.close()
         print("Conexion cerrada")
 
-        final=input("""Desea continuar?
-                    1.- Si
-                    2.-No
-                    """)
-        if final=="1":
-            pass
-        elif final=="2":
-            break
+
 
 
 def VerDatos():
     print("""¿Que datos desea verificar?
+            1.- Lista de Alumnos
+            2.- Lista de Profesores
+            3.- Lista de Cursos
+            4.- Lista de Salones
+            5.- Lista de Notas
+        """)
+    eleccion = str(input(""))
+
+    if eleccion == "1":
+        ImprimirBaseDeDatos(tabla="alumnos")
+    elif eleccion == "2":
+        ImprimirBaseDeDatos(tabla="profesores")
+    elif eleccion == "3":
+        ImprimirBaseDeDatos(tabla="cursos")
+    elif eleccion == "4":
+        ImprimirBaseDeDatos(tabla="salones")
+    elif eleccion == "5":
+        ImprimirBaseDeDatos(tabla="notas")
+    else:
+        print(Fore.BLACK + Back.RED +
+                  "¡Ingresa un valor correcto, por favor!" + Style.RESET_ALL)
+        time.sleep(5)
+        os.system("cls")
+
+def AgregarDatos():
+    print("""¿Que datos desea agregar?
             1.- Lista de Alumnos
             2.- Lista de Profesores
         """)
@@ -86,12 +105,12 @@ def VerDatos():
     else:
         print(Fore.BLACK + Back.RED +
                   "¡Ingresa un valor correcto, por favor!" + Style.RESET_ALL)
-        time.sleep(8)
+        time.sleep(5)
         os.system("cls")
 
 def Menu():
 
-    while loop == True:
+    while True:
         print("*" * 80)
         print(Fore.BLACK + Back.GREEN +
               "Bienvenido, escoge una opcion" + Style.RESET_ALL)
@@ -118,12 +137,13 @@ def Menu():
             os.system("cls")
             ModificarDatos()
         elif opcion == "5":
-            print("Hasta pronto")
+            print(Fore.BLACK + Back.GREEN +
+              "¡Hasta pronto!" + Style.RESET_ALL)
             break
         else:
             print(Fore.BLACK + Back.RED +
                   "¡Ingresa un valor correcto, por favor!" + Style.RESET_ALL)
-            time.sleep(8)
+            time.sleep(5)
             os.system("cls")
 
 

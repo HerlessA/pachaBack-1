@@ -1,0 +1,29 @@
+
+cliente.server_info()#abrimos conexion 
+print("conexion exitosa")
+cliente.close()#cerramos conexion
+
+#insertar
+# documento = {  
+#              "Nombre": "curso1",
+#              "Profesor": "prof1",
+#              "Salon": 1,
+#              "Alumnos": [alumno1.__dict__, alumno2.__dict__, alumno3.__dict__]
+#             }
+#collection.insert_one(documento)
+
+
+#buscar 
+#print(collection.find({"Nombre": "curso1"})[0]["Nombre"])
+#print(collection.find_one({"Nombre": "curso1"}))
+
+
+#actualizar
+#query = {"Nombre": "curso1"}
+#newValues = { "$set" : {"Nombre": "curso999"}}
+#collection.update_one(query,newValues)
+
+
+#delete
+#query = {"Nombre": "curso1"}
+#collection.delete_one(query,newValues)

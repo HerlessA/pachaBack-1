@@ -1,0 +1,11 @@
+use SV70098291
+
+db.createCollection("Alumno")
+db.createCollection("Profesor")
+db.createCollection("Salon")
+db.createCollection("Curso")
+
+db.Alumno.insertOne({"nombre": "Elias Pabilo", "dni": "27326612", "edad": "14", "email": "elias@email.com"} )
+db.Profesor.insertOne({"nombre": "Jose Carlos","dni": "27326612", "edad": "44", "email": "josecarlos@email.com"})
+db.Salon.insertOne({"nombre": "Tercer Grado", "anio_escolar": "3"})
+db.Cruso.insertOne({"nombre": "Álgebra"})

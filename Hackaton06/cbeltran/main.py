@@ -22,7 +22,7 @@ try:
             menuAlumnos = Menu("Alumnos", opMenuAlumnos)
             ansAlumnos = menuAlumnos.show()
             if (ansAlumnos == "1"):
-                Alumno.cargarAlumnos()
+                
                 Alumno.listarAlumno()
             if (ansAlumnos == "2"):
                 Alumno.crearAlumno()               

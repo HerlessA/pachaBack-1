@@ -25,19 +25,16 @@ class Menu:
         while a:
             self.limpiarPantalla()
             print("")
-            print(color.CYAN+"::::::::::::::::::::"+"ESTE ES EL MENU DE " +
-                    self.name.upper()+"::::::::::::::::::::"+color.END)
+            print(color.GREEN+":::::::::::::::::::: "+"ESTE ES EL MENU DE " + self.name.upper()+" ::::::::::::::::::::"+color.END)
             print("")
             for (key, value) in self.op_list.items():
-                print(color.YELLOW + key + color.END + color.RED + " → " + color.END + color.GREEN + value + color.END)
+                print(key + color.GREEN + " → " + color.END + value)
             print("")
             ans = input(
-                color.GREEN + "Por favor, ingrese su opción: " + color.END)
+                color.YELLOW + "Por favor, ingrese su opción: " + color.END)
             print("")
             if(ans.upper() == "0"):
-                self.limpiarPantalla()
-                print("Hasta Pronto")
-                
+                print("Hasta, pronto")
                 break
             b = 0
             for (key, value) in self.op_list.items():
@@ -48,10 +45,11 @@ class Menu:
 
             else:
                 print(color.RED + "Opción no valida, escoja una opción valida" + color.END)
-                time.sleep(2)
+                time.sleep(3)
         return ans
 
     def limpiarPantalla(self):
         def clear():
+            # return os.system('cls')
             return os.system('clear')
         clear()
