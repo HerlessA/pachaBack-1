@@ -1,0 +1,57 @@
+//CONFIGURACIONNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+
+DEBUG = True
+ORATOR_DATABASES = {
+    'default': 'twitor',
+    'twitor': {
+        'driver': 'postgres',
+        'host': 'localhost',
+        'user': 'postgres',
+        'password': 'warstrategoC123',
+        'database': 'twitor'
+    }
+}
+
+
+app = Flask(__name__)
+app.config.from_object(__name__)
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
+
+
+//PARA EJECUTAR FUNCIONES CON ORATOR NECESITAMOS MODELOS, CLASES 
+
+class Alumno(db.Model):
+    __fillable__ = ['name', 'edad', 'email']
+    
+class User(db.Model):
+    __fillable__ = ['name', 'mail']
+
+
+//CRUDDDDDDDDDDDDDDDDDDDD
+
+def create_user():
+    user = User.create({
+    "name": "aaaaasdsaa",
+    "mail": "vbavvvaaabfb@gmail.com"
+    })
+
+    #return jsonify(user)
+    return "usuario creado correctamnete"
+
+
+def getUser(usuario_id):
+    req = User.find_or_fail(usuario_id)
+    return req.to_json()
+
+def updateUser(usuario_id):
+    req = User.find_or_fail(usuario_id)
+    req.update({
+    "name": "pablo",
+    "mail": "lili@gmail.com"
+    })
+    return req.to_json()
+
+def deleteUser(usuario_id):
+    req = User.find_or_fail(usuario_id)
+    req.delete()
+    return req.to_json()

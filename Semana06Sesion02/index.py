@@ -1,19 +1,23 @@
-from flask import Flask
+from flask import Flask, jsonify
 import router
+
 app = Flask(__name__)
 
 @app.get("/")
-
 def index():
-    data = router.probar()
-    
-    users = {'id':1,'name':'juan'}
-    return "Hola mundo!!"
-if __name__ == "__main__":
+    # users = [
+    #     {
+    #         "id": 1, 
+    #         "name": "Juan"
+    #     }, 
+    #     {
+    #         "id": 2, 
+    #         "name": "Pedro"
+    #     }
+    # ]
+    data = router.obtenerUsuario()
+    return jsonify(data)
 
+
+if __name__ == "__main__":
     app.run(host="127.0.0.1", port=4000)
-    
-    ##get: obtener
-    ##post: INsertar
-    ## put: actualziar datos
-    ## delete: eliminar

@@ -1,0 +1,19 @@
+{% extends "base_template.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+    <h1>Salones</h1>
+
+    {% if not salones  %}
+        <p>No hay salones aun</p>
+    {% else %}
+        {% for sal in salones %}
+            <ul><li><a>{{ sal.nombre }}</a></li></ul>
+        {% endfor %}
+    {% endif %}
+
+    
+{% endblock %}

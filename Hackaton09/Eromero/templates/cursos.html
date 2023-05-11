@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2 class="text-center">Crear curso</h2>
+            <form method="POST" action="{{ url_for('create_curso') }}">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="salon_id">Salón</label>
+                    <select class="form-control" id="salon_id" name="salon_id">
+                        {% for salon in salones %}
+                            <option value="{{ salon.id }}">{{ salon.nombre }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off">Registrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

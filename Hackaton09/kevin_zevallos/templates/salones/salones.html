@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Hackaton 09{% endblock %}
+
+{% block content %}
+    
+        <table>
+            <tr>
+                <th>ID Salon</th>
+                <th>Nombre del Salon</th>
+                <th>Año Escolar</th>
+            </tr>
+            {% for salon in salones %}
+            <tr>
+                <td>{{ salon.id }}</td>
+                <td>{{ salon.nombre }}</td>
+                <td>{{ salon.año_escolar }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    <div class="opciones">
+        <nav>
+            <a href="{{ url_for('create_salon')}}">agregar salon</a>
+            <a href="{{ url_for('delete_salon')}}">eliminar salon</a>
+        </nav>
+    </div>
+{% endblock %}

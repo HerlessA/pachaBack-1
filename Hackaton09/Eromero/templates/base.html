@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Colegio Pachaback</title>
+    <!-- Agregue la referencia del archivo CSS principal -->
+    <link rel="stylesheet" href="/static/css/main.css">
+    <!-- Agregue las referencias de los archivos Bootstrap y jQuery -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="#">Colegio Pachaback</a>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="footer bg-light mt-auto py-3">
+        <div class="container">
+            <span class="text-muted">Derechos Reservados &copy; Colegio Pachaback</span>
+        </div>
+    </footer>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
+

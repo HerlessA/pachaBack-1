@@ -1,0 +1,94 @@
+{% extends "base_template.html" %}
+
+{% block title %}Hackaton 09{% endblock %}
+
+{% block content %}
+
+{% if current_user.is_anonymous %}
+<h2>Bienvenid@</h2>
+<p>Inicia sesión para visualizar la información.</p>
+
+<a href="{{ url_for('login') }}">Ir a Login</a>
+
+{% else %}
+<h4>REGISTRO</h4>
+<br>
+    <table class="table">
+        <thead><tr>
+            <th scope="col">Alumno</th>
+            <th scope="col">DNI</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Correo</th>
+        </tr></thead>
+        <tbody>
+            <tr>
+                {% for alumno in alumnos %}
+                <td>{{ alumno.nombre }}</td>
+                <td>{{ alumno.dni }}</td>
+                <td>{{ alumno.edad }}</td>
+                <td>{{ alumno.correo }}</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Profesor</th>
+                <th scope="col">DNI</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Correo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for profesor in profesores %}
+                <td>{{ profesor.nombre }}</td>
+                <td>{{ profesor.dni }}</td>
+                <td>{{ profesor.edad }}</td>
+                <td>{{ profesor.correo }}</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Curso</th>
+                <th scope="col">ID profesor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for curso in cursos %}
+                <td>{{ curso.nombre }}</td>
+                <td>{{ curso.profesor_id }}</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Salon</th>
+                <th scope="col">Periodo</th>
+                <th scope="col">ID Alumno</th>
+                <th scope="col">ID Profesor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for salon in salones %}
+                <td>{{ salon.nombre }}</td>
+                <td>{{ salon.periodo }}</td>
+                <td>{{ salon.alumno_id }}</td>
+                <td>{{ salon.profesor_id }}</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+    {% endif %}
+{% endblock %}

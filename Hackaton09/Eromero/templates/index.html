@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-4">¡Bienvenido al Colegio Pachaback!</h1>
+        <p class="lead">Esta es una plataforma para administrar alumnos, profesores y notas bimestrales.</p>
+        <hr class="my-4">
+        <p>Para comenzar, inicia sesión.</p>
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-primary btn-lg mr-2" href="{{ url_for('login') }}" role="button">Iniciar sesión</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base_template.html" %}
+
+{% block title %}Hackaton 09{% endblock %}
+
+{% block content %}
+    <!-- <h3>Alumnos</h3>
+    {% for alumno in alumnos %}
+        <ul><li><a>{{ alumno.nombre }}</a></li></ul>
+    {% endfor %} -->
+
+    <h1><a href="{{ url_for('index') }}">Home</a></h1>
+    <h2> Alumnos </h2>
+    <ul>
+        <li><a href="{{ url_for('alumno_form_function') }}">Create</a></li>
+        <li><a href="{{ url_for('alumno_get_function') }}">Get</a></li>
+        <li><a href="{{ url_for('alumno_delete_function')}}">Delete</a></li>
+    </ul>
+
+    <h2> Profesor </h2>
+    <ul>
+        <li><a href="{{ url_for('profesor_form_function') }}">Create</a></li>
+        <li><a href="{{ url_for('profesor_get_function') }}">Get</a></li>
+        <li><a href="{{ url_for('profesor_delete_function') }}">Delete</a></li>
+    </ul>
+
+    <h2> Curso </h2>
+    <ul>
+        <li><a href="{{ url_for('cursos_form_function') }}">Create</a></li>
+        <li><a href="{{ url_for('cursos_get_function') }}">Get</a></li>
+        <li><a href="{{ url_for('cursos_delete_function') }}">Delete</a></li>
+    </ul>
+
+    <h2> Salones </h2>
+    <ul>
+        <li><a href="{{ url_for('salones_form_function') }}">Create</a></li>
+        <li><a href="{{ url_for('salones_get_function') }}">Get</a></li>
+        <li><a href="{{ url_for('salones_delete_function') }}">Delete</a></li>
+    </ul>
+
+{% endblock %}

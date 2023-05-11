@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Hackaton 09 {% endblock %} - FlaskApp</title>
+    <style>
+        .message {
+            padding: 10px;
+            margin: 5px;
+            background-color: #f3f3f3
+        }
+        nav a {
+            color: #d64161;
+            font-size: 3em;
+            margin-left: 50px;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">ColegioApp</a>
+        <a href="{{ url_for('get_all_alumnos')}}">ver alumnos</a>
+        <a href="{{ url_for('get_all_profesores')}}">ver profesores</a>
+        <a href="{{ url_for('get_all_salones')}}">ver salones</a>
+        <a href="{{ url_for('get_all_cursos')}}">ver cursos</a>
+    </nav>
+    <hr>
+    <div class="content">
+        {% block content %} {% endblock %}
+    </div>
+</body>
+</html>

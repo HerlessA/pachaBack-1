@@ -1,0 +1,19 @@
+{% extends "base_template.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+    <h1>Curso</h1>
+
+    {% if not cursos  %}
+        <p>No hay cursos aun</p>
+    {% else %}
+        {% for cur in cursos %}
+            <ul><li><a>{{ cur.nombre }}</a></li></ul>
+        {% endfor %}
+    {% endif %}
+
+    
+{% endblock %}

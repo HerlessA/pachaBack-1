@@ -1,0 +1,33 @@
+{% extends "base_template.html" %}
+
+{% block title %}
+    {% if form.nombre.data %}
+        {{ form.nombre.data }}
+    {% else %}
+        Nueva entrada
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <h1>Salones</h1>
+        <div>
+            {{ form.nombre.label }}
+            {{ form.nombre(size=128) }}<br>
+            {% for error in form.nombre.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.identificador.label }}
+            {{ form.identificador(size=128) }}<br>
+            {% for error in form.identificador.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.submit() }}
+        </div>
+    </form>
+{% endblock %}

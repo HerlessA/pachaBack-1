@@ -135,7 +135,7 @@ class Profesor(Persona):
             {"nombre": self.nombre},
             {"$set": {
                 "profesor": {
-                    "identificador": profesor.identificador,
+                    "identificador": profesor.identificador, 
                     "nombre": profesor.nombre
                 }
             }}

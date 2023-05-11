@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Hackaton 09{% endblock %}
+
+{% block content %}
+    
+        <table>
+            <tr>
+                <th>ID Profesor</th>
+                <th>Nombre de Profesor</th>
+                <th>Edad de Profesor</th>
+                <th>Correo de Profesor</th>
+            </tr>
+            {% for profesor in profesores %}
+            <tr>
+                <td>{{ profesor.id }}</td>
+                <td>{{ profesor.nombre }}</td>
+                <td>{{ profesor.edad }}</td>
+                <td>{{ profesor.correo }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    <div class="opciones">
+        <nav>
+            <a href="{{ url_for('create_profesor')}}">agregar profesor</a>
+            <a href="{{ url_for('delete_profesor')}}">eliminar profesor</a>
+        </nav>
+    </div>
+{% endblock %}

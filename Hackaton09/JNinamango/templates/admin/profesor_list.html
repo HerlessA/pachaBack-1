@@ -1,0 +1,19 @@
+{% extends "base_template.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+    <h1>Profesores</h1>
+
+    {% if not profesores  %}
+        <p>No hay profesores aun</p>
+    {% else %}
+        {% for prof in profesores %}
+            <ul><li><a>{{ prof.nombre }}</a></li></ul>
+        {% endfor %}
+    {% endif %}
+
+    
+{% endblock %}
