@@ -1,0 +1,18 @@
+{% extends "base_template.html" %}
+
+{% block title %}Hackaton 09{% endblock %}
+    {% block content %}
+        {% if current_user.is_anonymous %}
+            <h4>Loggeate para ver las listas</h4>
+        {% else %}
+            <h4>Menu</h4>
+            Alumnos<br>
+            <a href="/alumnos">Ver</a> <a href="/admin/alumnos">Cargar</a><br>
+            Profesores<br>
+            <a href="/profesores">Ver</a> <a href="/admin/profesores">Cargar </a><br>
+            Cursos<br>
+            <a href="/cursos">Ver</a> <a href="/admin/cursos">Cargar</a><br>
+            Salones<br>
+            <a href="/salones">Ver</a> <a href="/admin/salones">Cargar</a>
+        {% endif %}
+    {% endblock %}

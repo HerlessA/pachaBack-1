@@ -1,0 +1,12 @@
+{% extends "base_template.html" %}
+
+{% block title %}Hackaton 09{% endblock %}
+
+{% block content %}
+    <h4>Lista de Salones:</h4>
+    {% for salon in salones %}
+        {{ salon.nombre }}<br>
+        {{ salon.añoEscolar }}<br>
+    -----------------------------------------<br>
+    {% endfor %}
+{% endblock %}

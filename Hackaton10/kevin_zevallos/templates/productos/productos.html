@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Hackaton 10{% endblock %}
+
+{% block content %}
+    
+        <table>
+            <tr>
+                <th>ID Producto</th>
+                <th>Producto</th>
+                <th>Stock</th>
+            </tr>
+            {% for producto in productos %}
+            <tr>
+                <td>{{ producto.id }}</td>
+                <td>{{ producto.producto }}</td>
+                <td>{{ producto.stock }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    <div class="opciones">
+        <nav>
+            <a href="{{ url_for('updateProduct',id=3)}}">actualizar producto</a>
+        </nav>
+    </div>
+{% endblock %}

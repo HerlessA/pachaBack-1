@@ -62,7 +62,7 @@ db.sqlite3
 db.sqlite3-journal
 
 # Flask stuff:
-instance/
+
 .webassets-cache
 
 # Scrapy stuff:
@@ -132,4 +132,4 @@ dmypy.json
 .vscode/
 vscode
 
-.Semana06Sesion02-1
+.idea/

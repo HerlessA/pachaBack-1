@@ -1,0 +1,17 @@
+{% extends "base_template.html" %}
+
+{% block title %}Hackaton 10{% endblock %}
+
+{% block content %}
+
+{% if current_user.is_anonymous %}
+    <h2>Bienvenid@</h2>
+    <p>Inicia sesión para visualizar la información.</p>
+
+    <a href="{{ url_for('auth.login') }}">Ir a Login</a>
+
+{% else %}
+    <h1>Inicio</h1>
+    <br>
+    {% endif %}
+{% endblock %}

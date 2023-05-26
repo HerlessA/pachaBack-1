@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Hackaton 10{% endblock %}
+
+{% block content %}
+    
+        <table>
+            <tr>
+                <th>ID Venta</th>
+                <th>Producto</th>
+                <th>Cantidad vendida</th>
+                <th>Precio</th>
+            </tr>
+            {% for venta in ventas %}
+            <tr>
+                <td>{{ venta.id }}</td>
+                <td>{{ venta.producto }}</td>
+                <td>{{ venta.precio }}</td>
+                <td>{{ venta.cantidad }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    <div class="opciones">
+        <nav>
+            <a href="{{ url_for('createVenta',id=2)}}">generar venta</a>
+        </nav>
+    </div>
+{% endblock %}

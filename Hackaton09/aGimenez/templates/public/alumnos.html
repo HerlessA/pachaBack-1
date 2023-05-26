@@ -1,0 +1,14 @@
+{% extends "base_template.html" %}
+
+{% block title %}Hackaton 09{% endblock %}
+
+{% block content %}
+    <h4>Lista de Alumnos:</h4>
+    {% for alumno in alumnos %}
+        {{ alumno.nombre }}<br>
+        {{ alumno.identificador }}<br>
+        {{ alumno.edad }}<br>
+        {{ alumno.correo }}<br>
+    -----------------------------------------<br>
+    {% endfor %}
+{% endblock %}

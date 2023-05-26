@@ -1,0 +1,29 @@
+{% extends "base_template.html" %}
+
+{% block title %}Hackaton 09{% endblock %}
+
+{% block content %}
+<br>
+<div class="table-responsive col-md-8 offset-md-2">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Trabajador</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fact in facturas %}
+            <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{ fact.fecha }}</td>
+                <td>{{ fact.cliente_id }}</td>
+                <td>{{ fact.user_id }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
