@@ -89,13 +89,6 @@ def saveData(list, data, file):
     file.writeFile(jsonString)
 
 
-def createReport(file, dict, data):
-    dict.append(data)
-    jsonString = json.dumps(dict)
-    file.removeFile()
-    file.writeFile(jsonString)
-
-
 optionsMenuMain = {"- Estudiantes": "1", "- Docentes": "2", "- Salir": "0"}
 menuMain = utils.Menu("principal", optionsMenuMain)
 
@@ -183,10 +176,10 @@ while openMenu:
                 studentList.append(studentN)
                 saveData(studentDictList, studentN.toStudentDictionary(), studentFile)
                 singleStudentFile = utils.FileManager(f"S_{idCard}.txt")
-                createReport(
-                    singleStudentFile,
+                saveData(
                     singleStudentDict,
                     studentN.toSingleStudentDictionary(),
+                    singleStudentFile,
                 )
                 singleStudentDict = []
 
@@ -222,10 +215,10 @@ while openMenu:
                 teacherList.append(teacherN)
                 saveData(teacherDictList, teacherN.toTeacherDictionary(), teacherFile)
                 singleTeacherFile = utils.FileManager(f"T_{idCard}.txt")
-                createReport(
-                    singleTeacherFile,
+                saveData(
                     singleTeacherDict,
                     teacherN.toSingleTeacherDictionary(),
+                    singleTeacherFile,
                 )
                 singleTeacherDict = []
 

@@ -1,4 +1,5 @@
 from app import db
 
+
 class User(db.Model):
-    __fillable__ = ['name', 'email']
+    __fillable__ = ["name", "email"]

@@ -3,6 +3,7 @@ from tabulate import tabulate
 from conexion import Conexion
 from utils import Menu, Color
 from models.alumno import Alumno
+from models.profesor import Profesor
 
 
 conexion = Conexion()
@@ -21,12 +22,14 @@ def cargaInicial():
     query = "Select * from profesores;"
     res = conexion.consultarBDD(query=query)
     for p in res:
-        profesor = Alumno(p[0], p[1],p[2], p[3], p[4])
+        profesor = Profesor(p[0], p[1], p[2], p[3], p[4])
         lstProfesores.append(profesor)
+
 
 cargaInicial()
 
-#MENU SALON
+
+# MENU SALON
 def menuSalones():
     try:
         opMenu = {
@@ -45,7 +48,7 @@ def menuSalones():
             if ansMenu == "0":
                 break
 
-            elif ansMenu == "1": #Crear
+            elif ansMenu == "1":  # Crear
                 print("INGRESA DATOS DEL SALON")
                 seccion = input("Sección: ")
                 id_alumno = input("ID de alumno: ")
@@ -54,7 +57,7 @@ def menuSalones():
                 query = f"""INSERT INTO salones(seccion, id_alumno, id_periodo, id_profesor) VALUES ('{seccion}',{id_alumno}, {id_periodo}, {id_profesor});"""
                 if conexion.ejecutarBDD(query):
                     print("")
-                    print(Color.GREEN+ "Datos creados correctamente.")
+                    print(Color.GREEN + "Datos creados correctamente.")
                     print("")
                     confirm = True
                     while confirm:
@@ -63,14 +66,8 @@ def menuSalones():
                         if not resp == True:
                             break
 
-            elif ansMenu == "2": # Mostrar
-                header = [
-                    "ID",
-                    "Sección",
-                    "IdAlumno",
-                    "IdPeriodo",
-                    "IdProfesor"
-                ]
+            elif ansMenu == "2":  # Mostrar
+                header = ["ID", "Sección", "IdAlumno", "IdPeriodo", "IdProfesor"]
                 query = "SELECT * FROM salones;"
                 res = conexion.consultarBDD(query=query)
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
@@ -82,17 +79,11 @@ def menuSalones():
                     if not resp == True:
                         break
 
-            elif ansMenu == "3": #"Buscar
+            elif ansMenu == "3":  # "Buscar
                 idSalon = int(input("Ingresa ID del salón: "))
                 query = f"SELECT * FROM salones WHERE id = {idSalon};"
                 res = conexion.consultarBDD(query=query)
-                header = [
-                    "ID",
-                    "Sección",
-                    "IdAlumno",
-                    "IdPeriodo",
-                    "IdProfesor"
-                ]
+                header = ["ID", "Sección", "IdAlumno", "IdPeriodo", "IdProfesor"]
                 print("")
                 print(Color.GREEN + "Resultado: " + Color.END)
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
@@ -103,17 +94,11 @@ def menuSalones():
                     if not resp == True:
                         break
 
-            elif ansMenu == "4": #Editar
+            elif ansMenu == "4":  # Editar
                 idSalon = int(input("Ingresa ID del salon: "))
                 query = f"SELECT * FROM salones WHERE id = {idSalon};"
                 res = conexion.consultarBDD(query=query)
-                header = [
-                    "ID",
-                    "Sección",
-                    "IdAlumno",
-                    "IdPeriodo",
-                    "IdProfesor"
-                ]
+                header = ["ID", "Sección", "IdAlumno", "IdPeriodo", "IdProfesor"]
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
                 print(Color.YELLOW + "Ingresa nueva información: " + Color.END)
                 seccion = input("Sección: ")
@@ -124,9 +109,7 @@ def menuSalones():
                 id_alumno = {id_alumno}, id_periodo = {id_periodo}, id_profesor = {id_profesor};"""
                 confirm = True
                 while confirm:
-                    print(
-                            f"¿Esta seguro de actualizar los datos del salon? (si/no)"
-                        )
+                    print(f"¿Esta seguro de actualizar los datos del salon? (si/no)")
                     resp = input(Color.YELLOW + "Respuesta: " + Color.END)
                     if resp.strip().lower() == "si":
                         if conexion.ejecutarBDD(query):
@@ -138,24 +121,16 @@ def menuSalones():
                     else:
                         print(Color.RED + "❌Ingresa una opción valida." + Color.END)
 
-            elif ansMenu == "5": #"Eliminar
+            elif ansMenu == "5":  # "Eliminar
                 idSalon = int(input("Ingresa ID del salon a borrar: "))
                 query = f"SELECT * FROM salones WHERE id = {idSalon};"
                 res = conexion.consultarBDD(query=query)
-                header = [
-                    "ID",
-                    "Sección",
-                    "IdAlumno",
-                    "IdPeriodo",
-                    "IdProfesor"
-                ]
+                header = ["ID", "Sección", "IdAlumno", "IdPeriodo", "IdProfesor"]
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
 
                 confirm = True
                 while confirm:
-                    print(
-                            f"¿Esta seguro de borrar los datos del salón? (si/no)"
-                        )
+                    print(f"¿Esta seguro de borrar los datos del salón? (si/no)")
                     resp = input(Color.YELLOW + "Respuesta: " + Color.END)
                     if resp.strip().lower() == "si":
                         query = f""" DELETE FROM salones WHERE id = {idSalon};"""
@@ -190,16 +165,16 @@ def menuAlumnos():
             if ansMenu == "0":
                 break
 
-            elif ansMenu == "1": #Crear alumno
+            elif ansMenu == "1":  # Crear alumno
                 print("INGRESA DATOS DEL ALUMNO")
                 nombre = input("Nombre: ")
                 dni = input("DNI: ")
-                edad = int(input ("Edad: "))
+                edad = int(input("Edad: "))
                 correo = input("Correo: ")
                 query = f"""INSERT INTO alumnos(nombre, dni, edad, correo) VALUES ('{nombre}','{dni}',{edad},'{correo}');"""
                 if conexion.ejecutarBDD(query):
                     print("")
-                    print(Color.GREEN+ "Datos creados correctamente.")
+                    print(Color.GREEN + "Datos creados correctamente.")
                     print("")
                     confirm = True
                     while confirm:
@@ -208,14 +183,8 @@ def menuAlumnos():
                         if not resp == True:
                             break
 
-            elif ansMenu == "2": # Mostrar alumnos
-                header = [
-                    "ID",
-                    "Nombre",
-                    "DNI",
-                    "Edad",
-                    "Correo"
-                ]
+            elif ansMenu == "2":  # Mostrar alumnos
+                header = ["ID", "Nombre", "DNI", "Edad", "Correo"]
                 query = "SELECT * FROM alumnos;"
                 res = conexion.consultarBDD(query=query)
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
@@ -227,17 +196,11 @@ def menuAlumnos():
                     if not resp == True:
                         break
 
-            elif ansMenu == "3": #"Buscar alumno"
+            elif ansMenu == "3":  # "Buscar alumno"
                 idAlumno = int(input("Ingresa ID del alumno: "))
                 query = f"SELECT * FROM alumnos WHERE id = {idAlumno};"
                 res = conexion.consultarBDD(query=query)
-                header = [
-                    "ID",
-                    "Nombre",
-                    "DNI",
-                    "Edad",
-                    "Correo"
-                ]
+                header = ["ID", "Nombre", "DNI", "Edad", "Correo"]
                 print("")
                 print(Color.GREEN + "Resultado: " + Color.END)
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
@@ -248,30 +211,22 @@ def menuAlumnos():
                     if not resp == True:
                         break
 
-            elif ansMenu == "4": #Editar alumno
+            elif ansMenu == "4":  # Editar alumno
                 idAlumno = int(input("Ingresa ID del alumno: "))
                 query = f"SELECT * FROM alumnos WHERE id = {idAlumno};"
                 res = conexion.consultarBDD(query=query)
-                header = [
-                    "ID",
-                    "Nombre",
-                    "DNI",
-                    "Edad",
-                    "Correo"
-                ]
+                header = ["ID", "Nombre", "DNI", "Edad", "Correo"]
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
                 print(Color.YELLOW + "Ingresa nueva información: " + Color.END)
                 nombre = input("Nombre: ")
                 dni = input("DNI: ")
-                edad = int(input ("Edad: "))
+                edad = int(input("Edad: "))
                 correo = input("Correo: ")
                 query = f"""UPDATE alumnos SET nombre = '{nombre}',
                 dni = '{dni}', edad = {edad}, correo = '{correo}' WHERE id = {idAlumno};"""
                 confirm = True
                 while confirm:
-                    print(
-                            f"¿Esta seguro de actualizar los datos del alumno? (si/no)"
-                        )
+                    print(f"¿Esta seguro de actualizar los datos del alumno? (si/no)")
                     resp = input(Color.YELLOW + "Respuesta: " + Color.END)
                     if resp.strip().lower() == "si":
                         if conexion.ejecutarBDD(query):
@@ -283,24 +238,16 @@ def menuAlumnos():
                     else:
                         print(Color.RED + "❌Ingresa una opción valida." + Color.END)
 
-            elif ansMenu == "5": #"Eliminar alumno"
+            elif ansMenu == "5":  # "Eliminar alumno"
                 idAlumno = int(input("Ingresa ID de alumno a borrar: "))
                 query = f"SELECT * FROM alumnos WHERE id = {idAlumno};"
                 res = conexion.consultarBDD(query=query)
-                header = [
-                    "ID",
-                    "Nombre",
-                    "DNI",
-                    "Edad",
-                    "Correo"
-                ]
+                header = ["ID", "Nombre", "DNI", "Edad", "Correo"]
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
 
                 confirm = True
                 while confirm:
-                    print(
-                            f"¿Esta seguro de borrar los datos del alumno? (si/no)"
-                        )
+                    print(f"¿Esta seguro de borrar los datos del alumno? (si/no)")
                     resp = input(Color.YELLOW + "Respuesta: " + Color.END)
                     if resp.strip().lower() == "si":
                         query = f""" DELETE FROM alumnos WHERE id = {idAlumno};"""
@@ -335,16 +282,16 @@ def menuProfesores():
             if ansMenu == "0":
                 break
 
-            elif ansMenu == "1": #Crear profesor
+            elif ansMenu == "1":  # Crear profesor
                 print("INGRESA DATOS DEL PROFESOR")
                 nombre = input("Nombre: ")
                 dni = input("DNI: ")
-                edad = int(input ("Edad: "))
+                edad = int(input("Edad: "))
                 correo = input("Correo: ")
                 query = f"""INSERT INTO profesores(nombre, dni, edad, correo) VALUES ('{nombre}','{dni}',{edad},'{correo}');"""
                 if conexion.ejecutarBDD(query):
                     print("")
-                    print(Color.GREEN+ "Datos creados correctamente.")
+                    print(Color.GREEN + "Datos creados correctamente.")
                     print("")
                     confirm = True
                     while confirm:
@@ -353,14 +300,8 @@ def menuProfesores():
                         if not resp == True:
                             break
 
-            elif ansMenu == "2": # Mostrar profesores
-                header = [
-                    "ID",
-                    "Nombre",
-                    "DNI",
-                    "Edad",
-                    "Correo"
-                ]
+            elif ansMenu == "2":  # Mostrar profesores
+                header = ["ID", "Nombre", "DNI", "Edad", "Correo"]
                 query = "SELECT * FROM profesores;"
                 res = conexion.consultarBDD(query=query)
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
@@ -372,17 +313,11 @@ def menuProfesores():
                     if not resp == True:
                         break
 
-            elif ansMenu == "3": #"Buscar profesor"
+            elif ansMenu == "3":  # "Buscar profesor"
                 idProfesor = int(input("Ingresa ID del profesor: "))
                 query = f"SELECT * FROM profesores WHERE id = {idProfesor};"
                 res = conexion.consultarBDD(query=query)
-                header = [
-                    "ID",
-                    "Nombre",
-                    "DNI",
-                    "Edad",
-                    "Correo"
-                ]
+                header = ["ID", "Nombre", "DNI", "Edad", "Correo"]
                 print("")
                 print(Color.GREEN + "Resultado: " + Color.END)
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
@@ -393,30 +328,22 @@ def menuProfesores():
                     if not resp == True:
                         break
 
-            elif ansMenu == "4": #Editar profesor
+            elif ansMenu == "4":  # Editar profesor
                 idAlumno = int(input("Ingresa ID del profesor: "))
                 query = f"SELECT * FROM profesores WHERE id = {idProfesor};"
                 res = conexion.consultarBDD(query=query)
-                header = [
-                    "ID",
-                    "Nombre",
-                    "DNI",
-                    "Edad",
-                    "Correo"
-                ]
+                header = ["ID", "Nombre", "DNI", "Edad", "Correo"]
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
                 print(Color.YELLOW + "Ingresa nueva información: " + Color.END)
                 nombre = input("Nombre: ")
                 dni = input("DNI: ")
-                edad = int(input ("Edad: "))
+                edad = int(input("Edad: "))
                 correo = input("Correo: ")
                 query = f"""UPDATE profesores SET nombre = '{nombre}',
                 dni = '{dni}', edad = {edad}, correo = '{correo}' WHERE id = {idProfesor};"""
                 confirm = True
                 while confirm:
-                    print(
-                            f"¿Esta seguro de actualizar los datos del profesor? (si/no)"
-                        )
+                    print(f"¿Esta seguro de actualizar los datos del profesor? (si/no)")
                     resp = input(Color.YELLOW + "Respuesta: " + Color.END)
                     if resp.strip().lower() == "si":
                         if conexion.ejecutarBDD(query):
@@ -428,24 +355,16 @@ def menuProfesores():
                     else:
                         print(Color.RED + "❌Ingresa una opción valida." + Color.END)
 
-            elif ansMenu == "5": #"Eliminar PROFESOR"
+            elif ansMenu == "5":  # "Eliminar PROFESOR"
                 idProfesor = int(input("Ingresa ID de profesor a borrar: "))
                 query = f"SELECT * FROM profesores WHERE id = {idProfesor};"
                 res = conexion.consultarBDD(query=query)
-                header = [
-                    "ID",
-                    "Nombre",
-                    "DNI",
-                    "Edad",
-                    "Correo"
-                ]
+                header = ["ID", "Nombre", "DNI", "Edad", "Correo"]
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
 
                 confirm = True
                 while confirm:
-                    print(
-                            f"¿Esta seguro de borrar los datos del profesor? (si/no)"
-                        )
+                    print(f"¿Esta seguro de borrar los datos del profesor? (si/no)")
                     resp = input(Color.YELLOW + "Respuesta: " + Color.END)
                     if resp.strip().lower() == "si":
                         query = f"""DELETE FROM profesores WHERE id = {idProfesor};"""
@@ -459,6 +378,7 @@ def menuProfesores():
                         print(Color.RED + "❌Ingresa una opción valida." + Color.END)
     except Exception as error:
         print(str(error))
+
 
 # MENU PERIODO ESCOLAR
 def menuPeriodo():
@@ -479,14 +399,14 @@ def menuPeriodo():
             if ansMenu == "0":
                 break
 
-            elif ansMenu == "1": #Crear
+            elif ansMenu == "1":  # Crear
                 print("INGRESA DATOS DEL PERIODO ESCOLAR")
                 denominacion = input("Denominación: ")
                 id_bimestre = input("ID de bimestre: ")
                 query = f"""INSERT INTO periodos(denominacion, id_bimestre) VALUES ('{denominacion}',{id_bimestre});"""
                 if conexion.ejecutarBDD(query):
                     print("")
-                    print(Color.GREEN+ "Datos creados correctamente.")
+                    print(Color.GREEN + "Datos creados correctamente.")
                     print("")
                     confirm = True
                     while confirm:
@@ -495,12 +415,8 @@ def menuPeriodo():
                         if not resp == True:
                             break
 
-            elif ansMenu == "2": # Mostrar
-                header = [
-                    "ID",
-                    "Denominación",
-                    "IdBimestre"
-                ]
+            elif ansMenu == "2":  # Mostrar
+                header = ["ID", "Denominación", "IdBimestre"]
                 query = "SELECT * FROM periodos;"
                 res = conexion.consultarBDD(query=query)
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
@@ -512,15 +428,11 @@ def menuPeriodo():
                     if not resp == True:
                         break
 
-            elif ansMenu == "3": #"Buscar
+            elif ansMenu == "3":  # "Buscar
                 idPeriodo = int(input("Ingresa ID del periodo escolar: "))
                 query = f"SELECT * FROM periodos WHERE id = {idPeriodo};"
                 res = conexion.consultarBDD(query=query)
-                header = [
-                    "ID",
-                    "Denominación",
-                    "IdBimestre"
-                ]
+                header = ["ID", "Denominación", "IdBimestre"]
                 print("")
                 print(Color.GREEN + "Resultado: " + Color.END)
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
@@ -531,15 +443,11 @@ def menuPeriodo():
                     if not resp == True:
                         break
 
-            elif ansMenu == "4": #Editar
+            elif ansMenu == "4":  # Editar
                 idPeriodo = int(input("Ingresa ID del periodo escolar: "))
                 query = f"SELECT * FROM periodos WHERE id = {idPeriodo};"
                 res = conexion.consultarBDD(query=query)
-                header = [
-                    "ID",
-                    "Denominación",
-                    "IdBimestre"
-                ]
+                header = ["ID", "Denominación", "IdBimestre"]
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
                 print(Color.YELLOW + "Ingresa nueva información: " + Color.END)
                 denominacion = input("Denominación: ")
@@ -549,8 +457,8 @@ def menuPeriodo():
                 confirm = True
                 while confirm:
                     print(
-                            f"¿Esta seguro de actualizar los datos del periodo escolar? (si/no)"
-                        )
+                        f"¿Esta seguro de actualizar los datos del periodo escolar? (si/no)"
+                    )
                     resp = input(Color.YELLOW + "Respuesta: " + Color.END)
                     if resp.strip().lower() == "si":
                         if conexion.ejecutarBDD(query):
@@ -562,22 +470,18 @@ def menuPeriodo():
                     else:
                         print(Color.RED + "❌Ingresa una opción valida." + Color.END)
 
-            elif ansMenu == "5": #"Eliminar
+            elif ansMenu == "5":  # "Eliminar
                 idPeriodo = int(input("Ingresa ID del periodo escolar a borrar: "))
                 query = f"SELECT * FROM periodos WHERE id = {idPeriodo};"
                 res = conexion.consultarBDD(query=query)
-                header = [
-                    "ID",
-                    "Denominación",
-                    "IdBimestre"
-                ]
+                header = ["ID", "Denominación", "IdBimestre"]
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
 
                 confirm = True
                 while confirm:
                     print(
-                            f"¿Esta seguro de borrar los datos del periodo escolar? (si/no)"
-                        )
+                        f"¿Esta seguro de borrar los datos del periodo escolar? (si/no)"
+                    )
                     resp = input(Color.YELLOW + "Respuesta: " + Color.END)
                     if resp.strip().lower() == "si":
                         query = f""" DELETE FROM periodos WHERE id = {idPeriodo};"""
@@ -612,13 +516,13 @@ def menuBimestres():
             if ansMenu == "0":
                 break
 
-            elif ansMenu == "1": #Crear
+            elif ansMenu == "1":  # Crear
                 print("INGRESA DATOS DEL BIMESTRE")
                 nombre = input("Nombre: ")
                 query = f"""INSERT INTO bimestres(nombre) VALUES ('{nombre}');"""
                 if conexion.ejecutarBDD(query):
                     print("")
-                    print(Color.GREEN+ "Datos creados correctamente.")
+                    print(Color.GREEN + "Datos creados correctamente.")
                     print("")
                     confirm = True
                     while confirm:
@@ -627,11 +531,8 @@ def menuBimestres():
                         if not resp == True:
                             break
 
-            elif ansMenu == "2": # Mostrar
-                header = [
-                    "ID",
-                    "Nombre"
-                ]
+            elif ansMenu == "2":  # Mostrar
+                header = ["ID", "Nombre"]
                 query = "SELECT * FROM bimestres;"
                 res = conexion.consultarBDD(query=query)
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
@@ -643,14 +544,11 @@ def menuBimestres():
                     if not resp == True:
                         break
 
-            elif ansMenu == "3": #"Buscar
+            elif ansMenu == "3":  # "Buscar
                 idBimestre = int(input("Ingresa ID del bimestre: "))
                 query = f"SELECT * FROM bimestres WHERE id = {idBimestre};"
                 res = conexion.consultarBDD(query=query)
-                header = [
-                    "ID",
-                    "Nombre"
-                ]
+                header = ["ID", "Nombre"]
                 print("")
                 print(Color.GREEN + "Resultado: " + Color.END)
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
@@ -661,14 +559,11 @@ def menuBimestres():
                     if not resp == True:
                         break
 
-            elif ansMenu == "4": #Editar
+            elif ansMenu == "4":  # Editar
                 idBimestre = int(input("Ingresa ID del bimestre: "))
                 query = f"SELECT * FROM bimestres WHERE id = {idBimestre};"
                 res = conexion.consultarBDD(query=query)
-                header = [
-                    "ID",
-                    "Nombre"
-                ]
+                header = ["ID", "Nombre"]
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
                 print(Color.YELLOW + "Ingresa nueva información: " + Color.END)
                 nombre = input("Nombre: ")
@@ -676,8 +571,8 @@ def menuBimestres():
                 confirm = True
                 while confirm:
                     print(
-                            f"¿Esta seguro de actualizar los datos del periodo escolar? (si/no)"
-                        )
+                        f"¿Esta seguro de actualizar los datos del periodo escolar? (si/no)"
+                    )
                     resp = input(Color.YELLOW + "Respuesta: " + Color.END)
                     if resp.strip().lower() == "si":
                         if conexion.ejecutarBDD(query):
@@ -689,21 +584,16 @@ def menuBimestres():
                     else:
                         print(Color.RED + "❌Ingresa una opción valida." + Color.END)
 
-            elif ansMenu == "5": #"Eliminar
+            elif ansMenu == "5":  # "Eliminar
                 idBimestre = int(input("Ingresa ID del Bimestre a borrar: "))
                 query = f"SELECT * FROM bimestres WHERE id = {idBimestre};"
                 res = conexion.consultarBDD(query=query)
-                header = [
-                    "ID",
-                    "Nombre"
-                ]
+                header = ["ID", "Nombre"]
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
 
                 confirm = True
                 while confirm:
-                    print(
-                            f"¿Esta seguro de borrar los datos del bimestre? (si/no)"
-                        )
+                    print(f"¿Esta seguro de borrar los datos del bimestre? (si/no)")
                     resp = input(Color.YELLOW + "Respuesta: " + Color.END)
                     if resp.strip().lower() == "si":
                         query = f""" DELETE FROM bimestres WHERE id = {idBimestre};"""
@@ -717,6 +607,7 @@ def menuBimestres():
                         print(Color.RED + "❌Ingresa una opción valida." + Color.END)
     except Exception as error:
         print(str(error))
+
 
 # MENU CURSOS
 def menuCursos():
@@ -737,13 +628,13 @@ def menuCursos():
             if ansMenu == "0":
                 break
 
-            elif ansMenu == "1": #Crear
+            elif ansMenu == "1":  # Crear
                 print("INGRESA DATOS DEL CURSO")
                 nombre = input("Nombre: ")
                 query = f"""INSERT INTO cursos(nombre) VALUES ('{nombre}');"""
                 if conexion.ejecutarBDD(query):
                     print("")
-                    print(Color.GREEN+ "Datos creados correctamente.")
+                    print(Color.GREEN + "Datos creados correctamente.")
                     print("")
                     confirm = True
                     while confirm:
@@ -752,11 +643,8 @@ def menuCursos():
                         if not resp == True:
                             break
 
-            elif ansMenu == "2": # Mostrar
-                header = [
-                    "ID",
-                    "Nombre"
-                ]
+            elif ansMenu == "2":  # Mostrar
+                header = ["ID", "Nombre"]
                 query = "SELECT * FROM cursos;"
                 res = conexion.consultarBDD(query=query)
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
@@ -768,14 +656,11 @@ def menuCursos():
                     if not resp == True:
                         break
 
-            elif ansMenu == "3": #"Buscar
+            elif ansMenu == "3":  # "Buscar
                 idCurso = int(input("Ingresa ID del curso: "))
                 query = f"SELECT * FROM cursos WHERE id = {idCurso};"
                 res = conexion.consultarBDD(query=query)
-                header = [
-                    "ID",
-                    "Nombre"
-                ]
+                header = ["ID", "Nombre"]
                 print("")
                 print(Color.GREEN + "Resultado: " + Color.END)
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
@@ -786,23 +671,18 @@ def menuCursos():
                     if not resp == True:
                         break
 
-            elif ansMenu == "4": #Editar
+            elif ansMenu == "4":  # Editar
                 idCurso = int(input("Ingresa ID del curso: "))
                 query = f"SELECT * FROM cursos WHERE id = {idCurso};"
                 res = conexion.consultarBDD(query=query)
-                header = [
-                    "ID",
-                    "Nombre"
-                ]
+                header = ["ID", "Nombre"]
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
                 print(Color.YELLOW + "Ingresa nueva información: " + Color.END)
                 nombre = input("Nombre: ")
                 query = f"""UPDATE cursos SET nombre = '{nombre}';"""
                 confirm = True
                 while confirm:
-                    print(
-                            f"¿Esta seguro de actualizar los datos del curso? (si/no)"
-                        )
+                    print(f"¿Esta seguro de actualizar los datos del curso? (si/no)")
                     resp = input(Color.YELLOW + "Respuesta: " + Color.END)
                     if resp.strip().lower() == "si":
                         if conexion.ejecutarBDD(query):
@@ -814,21 +694,16 @@ def menuCursos():
                     else:
                         print(Color.RED + "❌Ingresa una opción valida." + Color.END)
 
-            elif ansMenu == "5": #"Eliminar
+            elif ansMenu == "5":  # "Eliminar
                 idCurso = int(input("Ingresa ID del Curso a borrar: "))
                 query = f"SELECT * FROM cursos WHERE id = {idCurso};"
                 res = conexion.consultarBDD(query=query)
-                header = [
-                    "ID",
-                    "Nombre"
-                ]
+                header = ["ID", "Nombre"]
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
 
                 confirm = True
                 while confirm:
-                    print(
-                            f"¿Esta seguro de borrar los datos del curso? (si/no)"
-                        )
+                    print(f"¿Esta seguro de borrar los datos del curso? (si/no)")
                     resp = input(Color.YELLOW + "Respuesta: " + Color.END)
                     if resp.strip().lower() == "si":
                         query = f""" DELETE FROM cursos WHERE id = {idCurso};"""
@@ -863,14 +738,14 @@ def menuCursosProfesores():
             if ansMenu == "0":
                 break
 
-            elif ansMenu == "1": #Crear
+            elif ansMenu == "1":  # Crear
                 print("INGRESA DATOS DEL CURSOS_PROFESORES")
                 id_curso = input("ID del curso: ")
                 id_profesor = input("ID del profesor: ")
                 query = f"""INSERT INTO cursosprofesores(id_curso, id_profesor) VALUES ({id_curso}, {id_profesor});"""
                 if conexion.ejecutarBDD(query):
                     print("")
-                    print(Color.GREEN+ "Datos creados correctamente.")
+                    print(Color.GREEN + "Datos creados correctamente.")
                     print("")
                     confirm = True
                     while confirm:
@@ -879,12 +754,8 @@ def menuCursosProfesores():
                         if not resp == True:
                             break
 
-            elif ansMenu == "2": # Mostrar
-                header = [
-                    "ID",
-                    "IdCurso",
-                    "IdProfesor"
-                ]
+            elif ansMenu == "2":  # Mostrar
+                header = ["ID", "IdCurso", "IdProfesor"]
                 query = "SELECT * FROM cursosprofesores;"
                 res = conexion.consultarBDD(query=query)
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
@@ -896,15 +767,11 @@ def menuCursosProfesores():
                     if not resp == True:
                         break
 
-            elif ansMenu == "3": #"Buscar
+            elif ansMenu == "3":  # "Buscar
                 idCP = int(input("Ingresa ID del curso_profesor: "))
                 query = f"SELECT * FROM cursosprofesores WHERE id = {idCP};"
                 res = conexion.consultarBDD(query=query)
-                header = [
-                    "ID",
-                    "IdCurso",
-                    "IdProfesor"
-                ]
+                header = ["ID", "IdCurso", "IdProfesor"]
                 print("")
                 print(Color.GREEN + "Resultado: " + Color.END)
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
@@ -915,15 +782,11 @@ def menuCursosProfesores():
                     if not resp == True:
                         break
 
-            elif ansMenu == "4": #Editar
+            elif ansMenu == "4":  # Editar
                 idCP = int(input("Ingresa ID del curso: "))
                 query = f"SELECT * FROM cursosprofesores WHERE id = {idCP};"
                 res = conexion.consultarBDD(query=query)
-                header = [
-                    "ID",
-                    "IdCurso",
-                    "IdProfesor"
-                ]
+                header = ["ID", "IdCurso", "IdProfesor"]
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
                 print(Color.YELLOW + "Ingresa nueva información: " + Color.END)
                 id_curso = input("ID del curso: ")
@@ -932,8 +795,8 @@ def menuCursosProfesores():
                 confirm = True
                 while confirm:
                     print(
-                            f"¿Esta seguro de actualizar los datos del curso_profesor? (si/no)"
-                        )
+                        f"¿Esta seguro de actualizar los datos del curso_profesor? (si/no)"
+                    )
                     resp = input(Color.YELLOW + "Respuesta: " + Color.END)
                     if resp.strip().lower() == "si":
                         if conexion.ejecutarBDD(query):
@@ -945,22 +808,18 @@ def menuCursosProfesores():
                     else:
                         print(Color.RED + "❌Ingresa una opción valida." + Color.END)
 
-            elif ansMenu == "5": #"Eliminar
+            elif ansMenu == "5":  # "Eliminar
                 idCP = int(input("Ingresa ID del Curso_Profesor a borrar: "))
                 query = f"SELECT * FROM cursosprofesores WHERE id = {idCP};"
                 res = conexion.consultarBDD(query=query)
-                header = [
-                    "ID",
-                    "IdCurso",
-                    "IdProfesor"
-                ]
+                header = ["ID", "IdCurso", "IdProfesor"]
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
 
                 confirm = True
                 while confirm:
                     print(
-                            f"¿Esta seguro de borrar los datos del curso_profesor? (si/no)"
-                        )
+                        f"¿Esta seguro de borrar los datos del curso_profesor? (si/no)"
+                    )
                     resp = input(Color.YELLOW + "Respuesta: " + Color.END)
                     if resp.strip().lower() == "si":
                         query = f""" DELETE FROM cursosprofesores WHERE id = {idCP};"""
@@ -975,13 +834,16 @@ def menuCursosProfesores():
     except Exception as error:
         print(str(error))
 
-#MENU NOTAS
+
+# MENU NOTAS
 def menuNotas():
     try:
         opMenu = {
             "Crear nota": "1",
             "Mostrar nota": "2",
-            "Eliminar nota": "3",
+            "Buscar nota": "3",
+            "Editar nota": "4",
+            "Eliminar nota": "5",
             "Regresar a Menu Principal": "0",
         }
         showMenu = True
@@ -992,16 +854,16 @@ def menuNotas():
             if ansMenu == "0":
                 break
 
-            elif ansMenu == "1": #Crear
+            elif ansMenu == "1":  # Crear
                 print("INGRESA DATOS DE NOTA")
                 valor = input("Nota: ")
                 id_alumno = input("ID de alumno: ")
                 id_curso = input("ID de curso: ")
-                id_bimestre = input("ID del bimestre: ")
-                query = f"""INSERT INTO notas(valor, id_alumno, id_curso, id_bimestre) VALUES ('{valor}',{id_alumno}, {id_curso}, {id_bimestre});"""
+                id_periodo = input("ID del periodo: ")
+                query = f"""INSERT INTO notas(valor, id_alumno, id_curso, id_periodo) VALUES ('{valor}',{id_alumno}, {id_curso}, {id_periodo});"""
                 if conexion.ejecutarBDD(query):
                     print("")
-                    print(Color.GREEN+ "Datos creados correctamente.")
+                    print(Color.GREEN + "Datos creados correctamente.")
                     print("")
                     confirm = True
                     while confirm:
@@ -1010,14 +872,8 @@ def menuNotas():
                         if not resp == True:
                             break
 
-            elif ansMenu == "2": # Mostrar
-                header = [
-                    "ID",
-                    "Nota",
-                    "IdAlumno",
-                    "IdCurso",
-                    "IdBimestre"
-                ]
+            elif ansMenu == "2":  # Mostrar
+                header = ["ID", "Nota", "IdAlumno", "IdCurso", "IdPeriodo"]
                 query = "SELECT * FROM notas;"
                 res = conexion.consultarBDD(query=query)
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
@@ -1029,24 +885,57 @@ def menuNotas():
                     if not resp == True:
                         break
 
-            elif ansMenu == "3": #"Eliminar
-                idNota = int(input("Ingresa ID de NOTA: "))
+            elif ansMenu == "3":  # "Buscar
+                idNota = int(input("Ingresa ID de la nota: "))
                 query = f"SELECT * FROM notas WHERE id = {idNota};"
                 res = conexion.consultarBDD(query=query)
-                header = [
-                    "ID",
-                    "Nota",
-                    "IdAlumno",
-                    "IdCurso",
-                    "IdBimestre"
-                ]
+                header = ["ID", "Nota", "IdAlumno", "IdCurso", "IdPeriodo"]
+                print("")
+                print(Color.GREEN + "Resultado: " + Color.END)
+                print(tabulate(res, headers=header, tablefmt="fancy_grid"))
+                confirm = True
+                while confirm:
+                    print(Color.YELLOW + "Presiona `enter` para continuar.")
+                    resp = input()
+                    if not resp == True:
+                        break
+
+            elif ansMenu == "4":  # Editar
+                idNota = int(input("Ingresa ID de la Nota: "))
+                query = f"SELECT * FROM notas WHERE id = {idNota};"
+                res = conexion.consultarBDD(query=query)
+                header = ["ID", "Nota", "IdAlumno", "IdCurso", "IdPeriodo"]
+                print(tabulate(res, headers=header, tablefmt="fancy_grid"))
+                print(Color.YELLOW + "Ingresa nueva información: " + Color.END)
+                valor = input("Nota: ")
+                id_alumno = input("ID de alumno: ")
+                id_curso = input("ID de curso: ")
+                id_periodo = input("ID del periodo: ")
+                query = f"""UPDATE notas SET valor = {valor}, id_alumno = {id_alumno}, id_curso = {id_curso}, id_periodo = {id_periodo};"""
+                confirm = True
+                while confirm:
+                    print(f"¿Esta seguro de actualizar la nota? (si/no)")
+                    resp = input(Color.YELLOW + "Respuesta: " + Color.END)
+                    if resp.strip().lower() == "si":
+                        if conexion.ejecutarBDD(query):
+                            print(Color.GREEN + f"✅ Datos actualizados." + Color.END)
+                            time.sleep(1)
+                            break
+                    elif resp.strip().lower() == "no":
+                        break
+                    else:
+                        print(Color.RED + "❌Ingresa una opción valida." + Color.END)
+
+            elif ansMenu == "5":  # "Eliminar
+                idNota = int(input("Ingresa ID de la NOTA: "))
+                query = f"SELECT * FROM notas WHERE id = {idNota};"
+                res = conexion.consultarBDD(query=query)
+                header = ["ID", "Nota", "IdAlumno", "IdCurso", "IdPeriodo"]
                 print(tabulate(res, headers=header, tablefmt="fancy_grid"))
 
                 confirm = True
                 while confirm:
-                    print(
-                            f"¿Esta seguro de borrar los datos del salón? (si/no)"
-                        )
+                    print(f"¿Esta seguro de borrar los datos de la nota? (si/no)")
                     resp = input(Color.YELLOW + "Respuesta: " + Color.END)
                     if resp.strip().lower() == "si":
                         query = f""" DELETE FROM notas WHERE id = {idNota};"""

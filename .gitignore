@@ -133,3 +133,5 @@ dmypy.json
 vscode
 
 .idea/
+instance/
+.DS_Store

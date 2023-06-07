@@ -6,3 +6,14 @@
 6. >>> db.create_all()
 7. ctrl + z
 8. flask run
+
+NOTA: Cambair password db.
+
+### MIGRACIONES
+flask db init
+flask db migrate -m "Initial database"
+flask db upgrade
+
+
+
+

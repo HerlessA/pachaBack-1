@@ -3,8 +3,8 @@ from .users_table_seeder import UsersTableSeeder
 from .messages_table_seeder import MessagesTableSeeder
 from .followers_table_seeder import FollowersTableSeeder
 
-class DatabaseSeeder(Seeder):
 
+class DatabaseSeeder(Seeder):
     def run(self):
         """
         Run the database seeds.
@@ -12,4 +12,3 @@ class DatabaseSeeder(Seeder):
         self.call(UsersTableSeeder)
         self.call(MessagesTableSeeder)
         self.call(FollowersTableSeeder)
-
