@@ -1,0 +1,23 @@
+[
+    {
+    "dni": "45621878", 
+    "nombre": "Emilio", 
+    "apellido": "Canales", 
+    "direccion": "Breña", 
+    "areas": [
+            {
+            "nombre":"inyectologia",
+            "experiencia": 100
+            },
+            {
+            "nombre":"masajes",
+            "experiencia": 80
+            },
+            {
+            "nombre":"dietas",
+            "experiencia": 50
+            }  
+        ]
+    }
+]
+            
